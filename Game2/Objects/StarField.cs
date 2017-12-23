@@ -26,8 +26,8 @@ namespace Game2.Objects
 				float yscale = (float)rand.NextDouble();
 				float scaleratio = (xscale + yscale) / 2.0f;
 				stars.Add(new Star(starTextures[textureidx],
-									new Vector2(rand.Next(0, Globals.ScreenWidth - starTextures[textureidx].Width),
-												rand.Next(-Globals.ScreenHeight - starTextures[textureidx].Height, 0)),
+									new Vector2(rand.Next(0, G.ScreenWidth - starTextures[textureidx].Width),
+												rand.Next(-G.ScreenHeight - starTextures[textureidx].Height, 0)),
 									new Vector2(0, scaleratio * 250.0f)));
 			}
 		}
@@ -38,15 +38,15 @@ namespace Game2.Objects
 			for (int i = 0; i < stars.Count; ++i)
 			{
 				stars[i].Update(gameTime);
-				if (stars[i].position.Y > Globals.ScreenHeight)
+				if (stars[i].position.Y > G.ScreenHeight)
 				{
 					int textureidx = rand.Next(starTextures.Count);
 					float xscale = (float)rand.NextDouble();
 					float yscale = (float)rand.NextDouble();
 					float scaleratio = (xscale + yscale) / 2.0f;
 					stars[i] = new Star(starTextures[textureidx],
-										new Vector2(rand.Next(0, Globals.ScreenWidth - starTextures[textureidx].Width),
-													rand.Next(-Globals.ScreenHeight - starTextures[textureidx].Height, 0)),
+										new Vector2(rand.Next(0, G.ScreenWidth - starTextures[textureidx].Width),
+													rand.Next(-G.ScreenHeight - starTextures[textureidx].Height, 0)),
 										new Vector2(0, scaleratio * 250.0f));
 				}
 			}

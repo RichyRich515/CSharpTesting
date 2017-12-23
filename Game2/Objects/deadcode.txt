@@ -1,0 +1,31 @@
+﻿//List<Texture2D> startextures = new List<Texture2D>
+//{
+//	Content.Load<Texture2D>("images/blue"),
+//	Content.Load<Texture2D>("images/red"),
+//	Content.Load<Texture2D>("images/green")
+//};
+//starfield = new StarField(startextures, 100);
+
+
+
+//emitter1 = new ParticleEmitter(10000, Content.Load<Texture2D>("images/particle"));
+//emitter1.acceleration = new Vector2(0, 0);
+//emitter1.active = true;
+//emitter1.looping = true;
+//emitter1.burst = false;
+//emitter1.directionHigh = 360;
+//emitter1.directionLow = 0;
+//emitter1.duration = 10;
+//emitter1.emission = 10000;
+//emitter1.lifeHigh = 3.0f;
+//emitter1.lifeLow = 0.5f;
+//emitter1.looping = true;
+//emitter1.maxVelocity = 100.0f;
+//emitter1.position = new Vector2(G.ScreenWidth / 2.0f, G.ScreenHeight / 2.0f);
+//emitter1.spawnClock = 0;
+//emitter1.startVelocityHigh = 100.0f;
+//emitter1.startVelocityLow = 50.0f;
+//emitter1.startColor = Color.Red;
+//emitter1.endColor = new Color(Color.DarkRed, 0);
+//emitter1.spawnClock = 0;
+//emitter1.spawnTime = 0;

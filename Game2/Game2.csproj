@@ -48,6 +48,8 @@
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Objects\Star.cs" />
     <Compile Include="Objects\StarField.cs" />
+    <Compile Include="Objects\Tetromino.cs" />
+    <Compile Include="Objects\TetrominoFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="Objects\deadcode.txt" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
