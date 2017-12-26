@@ -110,10 +110,23 @@ namespace Game2.Objects
 			return false;
 		}
 
-		// TODO: can move function, checks if able to move in direction
-		private bool CanMove(int direction)
+		// TODO: can move function, checks if able to move to location
+		private bool CanMove(Tetromino t, int fx, int fy)
 		{
-			return false;
+			for (int x = 0; x < t.l_tetro.GetLength(2); x++)
+			{
+				for (int y = 0; y < t.l_tetro.GetLength(1); y++)
+				{
+					if (t.l_tetro[rotation, y, x] != 0 && fx + x >= 0 && fx + x < G.FieldWidth && fy + y >= 0 && fy + y < G.FieldHeight)
+					{
+						if (l_field[fx + x, fy + y] != 0)
+						{
+							return false;
+						}
+					}
+				}
+			}
+			return true;
 		}
 
 		private void PlaceTetromino()
@@ -200,19 +213,20 @@ namespace Game2.Objects
 			}
 		}
 		
-		private void DrawHightlightColumns(SpriteBatch spriteBatch)
+		private void DrawGhost(SpriteBatch spriteBatch)
 		{
 			Tetromino hTetromino = new Tetromino(TetrominoQueue.ElementAt(0))
 			{
-				tetroType = Tetromino_Type.Hl
+				tetroType = Tetromino_Type.Hh
 			};
 
-			for (int y = currentY + 1; y < G.FieldHeight; y++)
+			for (int y = currentY; y < G.FieldHeight; y++)
 			{
 				if (CheckTetromino(hTetromino, currentX, y))
 				{
-					hTetromino.tetroType = Tetromino_Type.Hh;
-					hTetromino.Draw(spriteBatch, highlightTexture, currentX, y, rotation);
+					if (y == currentY)
+						break;
+					hTetromino.Draw(spriteBatch, tetroTexture, currentX, y, rotation);
 					break;
 				}
 			}
@@ -229,7 +243,7 @@ namespace Game2.Objects
 			}
 			TetrominoQueue.ElementAt(0).Draw(spriteBatch, tetroTexture, currentX, currentY, rotation);
 			TetrominoQueue.ElementAt(1).Draw(spriteBatch, tetroTexture, 30, 0, 0);
-			DrawHightlightColumns(spriteBatch);
+			DrawGhost(spriteBatch);
 		}
 		
 		public void Move(int direction)
