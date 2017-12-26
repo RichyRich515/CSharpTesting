@@ -68,7 +68,7 @@
 /processorParam:TextureFormat=Color
 /build:images/red.png
 
-#begin images/particle.bmp
+#begin images/particle.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,0,255
@@ -78,9 +78,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/particle.bmp
+/build:images/particle.jpg
 
-#begin images/particle.jpg
+#begin images/Highlight.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -90,5 +90,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/particle.jpg
+/build:images/Highlight.png
 

@@ -91,10 +91,10 @@ namespace Game2.Objects
 						particles[i].alive = true;
 						particles[i].texture = texture;
 						particles[i].position = position;
-						float dir = G.randomf(directionLow, directionHigh);
-						float vel = G.randomf(startVelocityLow, startVelocityHigh);
+						float dir = G.Randomf(directionLow, directionHigh);
+						float vel = G.Randomf(startVelocityLow, startVelocityHigh);
 						particles[i].velocity = new Vector2(vel * (float)Math.Cos(G.ToRadian(dir)), vel * (float)Math.Sin(G.ToRadian(dir)));
-						particles[i].lifetime = G.randomf(lifeLow, lifeHigh);
+						particles[i].lifetime = G.Randomf(lifeLow, lifeHigh);
 						particles[i].life = 0;
 						particles[i].startcolor = startColor;
 						particles[i].endcolor = endColor;
@@ -124,10 +124,10 @@ namespace Game2.Objects
 					particles[i].alive = true;
 					particles[i].texture = texture;
 					particles[i].position = position;
-					float dir = G.randomf(directionLow, directionHigh);
-					float vel = G.randomf(startVelocityLow, startVelocityHigh);
+					float dir = G.Randomf(directionLow, directionHigh);
+					float vel = G.Randomf(startVelocityLow, startVelocityHigh);
 					particles[i].velocity = new Vector2(vel * (float)Math.Cos(G.ToRadian(dir)), vel * (float)Math.Sin(G.ToRadian(dir)));
-					particles[i].lifetime = G.randomf(lifeLow, lifeHigh);
+					particles[i].lifetime = G.Randomf(lifeLow, lifeHigh);
 					particles[i].life = 0;
 					particles[i].startcolor = startColor;
 					particles[i].endcolor = endColor;

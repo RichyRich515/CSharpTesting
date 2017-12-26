@@ -48,6 +48,7 @@
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Objects\Star.cs" />
     <Compile Include="Objects\StarField.cs" />
+    <Compile Include="Objects\Tetris.cs" />
     <Compile Include="Objects\Tetromino.cs" />
     <Compile Include="Objects\TetrominoFactory.cs" />
     <Compile Include="Program.cs" />
