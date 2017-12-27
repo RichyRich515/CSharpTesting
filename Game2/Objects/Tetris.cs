@@ -431,6 +431,8 @@ namespace Game2.Objects
 									break;
 							}
 							rotation = newr;
+							// Reset move clock means infinite clock if a piece can rotate
+							moveClock = 0;
 						}
 					}
 				}

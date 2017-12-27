@@ -148,7 +148,7 @@ namespace Game2
 
 			spriteBatch.Begin();
 
-			// Debug text			
+			// Debug text
 			spriteBatch.DrawString(font, "uptime: " + gameTime.TotalGameTime.TotalSeconds.ToString() + "s", new Vector2(10, 0), Color.White);
 			spriteBatch.DrawString(font, "keys: " + keystring, new Vector2(10, 30), Color.White);
 			spriteBatch.DrawString(font, "rotation: " + tetris.rotation.ToString(), new Vector2(10, 60), Color.White);
