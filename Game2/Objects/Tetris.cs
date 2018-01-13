@@ -66,6 +66,7 @@ namespace Game2.Objects
 		};
 
 		private List<Tetromino> TetrominoQueue;
+		private Tetromino heldTetromino;
 		public Texture2D tetroTexture;
 		public Texture2D highlightTexture;
 
@@ -101,6 +102,10 @@ namespace Game2.Objects
 				// Can't start on S or Z
 			}
 			while (TetrominoQueue.ElementAt(0).tetroType == Tetromino_Type.S || TetrominoQueue.ElementAt(0).tetroType == Tetromino_Type.Z);
+			ResetTetromino();
+		}
+		private void ResetTetromino()
+		{
 			if (TetrominoQueue.ElementAt(0).tetroType == Tetromino_Type.O)
 			{
 				currentX = 4;
@@ -109,11 +114,10 @@ namespace Game2.Objects
 			{
 				currentX = 3;
 			}
-			// dequeue
-			// clear
-			// peek
+			currentY = 0;
+			rotation = 0;
+			moveClock = 0;
 		}
-
 		// TODO: this but better
 		private void EnqueueTetrominos(List<Tetromino> tl)
 		{
@@ -133,6 +137,22 @@ namespace Game2.Objects
 			}
 		}
 
+		public void Hold()
+		{
+			if (heldTetromino == null)
+			{
+				heldTetromino = TetrominoQueue[0];
+				TetrominoQueue.RemoveAt(0);
+			}
+			else
+			{
+				Tetromino temp = heldTetromino;
+				heldTetromino = TetrominoQueue[0];
+				TetrominoQueue[0] = temp;
+			}
+			ResetTetromino();
+		}
+
 		private bool CheckTetromino(Tetromino t, int fx, int fy)
 		{
 			for (int x = 0; x < t.l_tetro.GetLength(2); x++)
@@ -150,8 +170,7 @@ namespace Game2.Objects
 			}
 			return false;
 		}
-
-		// TODO: can move function, checks if able to move to location
+		
 		private bool CanMove(Tetromino t, int fx, int fy, int r)
 		{
 			for (int x = 0; x < t.l_tetro.GetLength(2); x++)
@@ -224,19 +243,17 @@ namespace Game2.Objects
 						}
 					}
 				}
+				spawnDelayClock = 0;
 			}
-
-			// TODO: reset function
+			
 			TetrominoQueue.RemoveAt(0);
-			rotation = 0;
-			currentX = 4;
-			currentY = 0;
-			moveClock = 0;
-			spawnDelayClock = 0;
-			if (TetrominoQueue.Count <= 1)
+			ResetTetromino();
+			if (TetrominoQueue.Count <= 4)
 			{
 				EnqueueTetrominos(TetrominoQueue);
 			}
+
+
 		}
 
 		public void Update(GameTime gameTime)
@@ -293,7 +310,13 @@ namespace Game2.Objects
 			}
 			DrawGhost(spriteBatch);
 			TetrominoQueue.ElementAt(0).Draw(spriteBatch, tetroTexture, currentX, currentY, rotation);
-			TetrominoQueue.ElementAt(1).Draw(spriteBatch, tetroTexture, 15, 0, 0);
+			TetrominoQueue.ElementAt(1).Draw(spriteBatch, tetroTexture, 12, 0, 0);
+			TetrominoQueue.ElementAt(2).Draw(spriteBatch, tetroTexture, 17, 0, 0);
+			TetrominoQueue.ElementAt(3).Draw(spriteBatch, tetroTexture, 22, 0, 0);
+			if (heldTetromino != null)
+			{
+				heldTetromino.Draw(spriteBatch, tetroTexture, 12, 5, 0);
+			}
 		}
 		
 		public void Move(int direction)

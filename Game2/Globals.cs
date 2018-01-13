@@ -14,8 +14,8 @@ namespace Game2
 		private static int _fieldHeight = 20;
 		private static int _fieldOffsetX = 400;
 		private static int _fieldOffsetY = 70;
-		private static int _tetrominoWidth = 45;
-		private static int _tetrominoHeight = 45;
+		private static int _tetrominoWidth = 42;
+		private static int _tetrominoHeight = 42;
 		private static Random _random = new Random();
 		public static int ScreenWidth { get { return _screenWidth; } }
 		public static int ScreenHeight { get { return _screenHeight; } }

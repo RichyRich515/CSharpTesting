@@ -32,16 +32,16 @@ namespace Game2
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
 		/// This is where it can query for any required services and load any non-graphic
-		/// related content.  Calling base.Initialize will enumerate through any components
+		/// related content. Calling base.Initialize will enumerate through any components
 		/// and initialize them as well.
 		/// </summary>
 		protected override void Initialize()
 		{
 			base.Initialize();
 			IsMouseVisible = true;
-			graphics.PreferredBackBufferWidth = (int)G.ScreenWidth;
-			graphics.PreferredBackBufferHeight = (int)G.ScreenHeight;
-			graphics.IsFullScreen = true;
+			graphics.PreferredBackBufferWidth = (int)G.ScreenWidth - 160;
+			graphics.PreferredBackBufferHeight = (int)G.ScreenHeight - 90;
+			graphics.IsFullScreen = false; // @@@ 
 			graphics.ApplyChanges();
 			tetris = new Tetris
 			{
@@ -85,35 +85,44 @@ namespace Game2
 			// TODO: make a keyboard handler
 			KeyboardState newState = Keyboard.GetState(); // get the newest state
 			// handle the input
-			if ((oldState.IsKeyUp(Keys.Space) && newState.IsKeyDown(Keys.Space)) || (oldState.IsKeyUp(Keys.Enter) && newState.IsKeyDown(Keys.Enter)))
+			if ((oldState.IsKeyUp(Keys.Space) && newState.IsKeyDown(Keys.Space)) || (oldState.IsKeyUp(Keys.Enter) && newState.IsKeyDown(Keys.Enter))
+			/* || (oldState.IsKeyUp(Keys.Up) && newState.IsKeyDown(Keys.Up))*/)
 			{
-				tetris.Slam(); // TODO: Slam
+				tetris.Slam();
+			}
+			else if ((oldState.IsKeyUp(Keys.C) && newState.IsKeyDown(Keys.C)))
+			{
+				tetris.Hold();
 			}
 			else
 			{
 				// Horizontal
-				if ((oldState.IsKeyUp(Keys.Right) && newState.IsKeyDown(Keys.Right)) || (oldState.IsKeyUp(Keys.D) && newState.IsKeyDown(Keys.D)))
+				if ((oldState.IsKeyUp(Keys.Right) && newState.IsKeyDown(Keys.Right)))
 				{
 					tetris.Move(1);
 				}
-				else if ((oldState.IsKeyUp(Keys.Left) && newState.IsKeyDown(Keys.Left)) || (oldState.IsKeyUp(Keys.A) && newState.IsKeyDown(Keys.A)))
+				else if ((oldState.IsKeyUp(Keys.Left) && newState.IsKeyDown(Keys.Left)))
 				{
 					tetris.Move(-1);
 				}
 
 				// Rotation
-				if ((oldState.IsKeyUp(Keys.Up) && newState.IsKeyDown(Keys.Up)) || (oldState.IsKeyUp(Keys.W) && newState.IsKeyDown(Keys.W)))
+				if ((oldState.IsKeyUp(Keys.Up) && newState.IsKeyDown(Keys.Up)))
+				{
+					tetris.Rotate(-1);
+				}
+				else if ((oldState.IsKeyUp(Keys.Down) && newState.IsKeyDown(Keys.Down)))
 				{
 					tetris.Rotate(1);
 				}
 
 				// Speed modifying
-				if ((oldState.IsKeyUp(Keys.Down) && newState.IsKeyDown(Keys.Down)) || (oldState.IsKeyUp(Keys.S) && newState.IsKeyDown(Keys.S)))
+				if ((oldState.IsKeyUp(Keys.LeftShift) && newState.IsKeyDown(Keys.LeftShift)))
 				{
 					// on push
 					tetris.Speed(true); 
 				}
-				else if ((oldState.IsKeyDown(Keys.Down) && newState.IsKeyUp(Keys.Down)) || (oldState.IsKeyDown(Keys.S) && newState.IsKeyUp(Keys.S)))
+				else if ((oldState.IsKeyDown(Keys.LeftShift) && newState.IsKeyUp(Keys.LeftShift)))
 				{
 					// on release
 					tetris.Speed(false);
@@ -151,9 +160,9 @@ namespace Game2
 			// Debug text
 			spriteBatch.DrawString(font, "uptime: " + gameTime.TotalGameTime.TotalSeconds.ToString() + "s", new Vector2(10, 0), Color.White);
 			spriteBatch.DrawString(font, "keys: " + keystring, new Vector2(10, 30), Color.White);
-			spriteBatch.DrawString(font, "rotation: " + tetris.rotation.ToString(), new Vector2(10, 60), Color.White);
 			spriteBatch.DrawString(font, "clock: " + tetris.moveClock.ToString(), new Vector2(10, 90), Color.White);
 			spriteBatch.DrawString(font, "(X, Y): (" + tetris.currentX + ", " + tetris.currentY + ")", new Vector2(10, 120), Color.White);
+			spriteBatch.DrawString(font, "rotation: " + tetris.rotation.ToString(), new Vector2(10, 60), Color.White);
 			spriteBatch.DrawString(font, "Field:", new Vector2(10, 150), Color.White);
 			for (int i = 0; i < G.FieldHeight; i++)
 			{
